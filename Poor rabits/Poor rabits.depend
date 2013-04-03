@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1364999431 source:e:\projects\poor rabits\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+
