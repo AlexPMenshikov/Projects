@@ -4,7 +4,8 @@
 
 int main()
 {
-    printf("Hello world!\n");
+    int rabits;
+    printf(&d,"Hello world!",rabits," \n");
     getch();
     return 0;
 }
