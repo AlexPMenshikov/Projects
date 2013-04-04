@@ -72,11 +72,11 @@ void generationRabit()
     cout << "Sanya HP=" << Sanya.HP <<" O_o \n";
     getch();
     cls();
-   for(int i=1;i<10;i++)
+   /*for(int i=1;i<10;i++)
     {
         Rabit id(30,3,false);
         cout << id.HP;
-    }
+    }*/
     //cout << "!!!!  " <<id.HP;
 }
 
