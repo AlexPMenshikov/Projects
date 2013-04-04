@@ -1,39 +1,86 @@
 //____Libraries
 #include <iostream>
+#include <conio.h>
+
 //____Namespace
 using namespace std;
+
 //____Global variables
 int menuStatus=0;
+
 //____Const
-const unsigned long int big = 32000;
+const unsigned long int big = 65000;
+
+//____Function to clear all screen MUCH MORE SPAAAACCCEEEE
+void cls()
+{
+    cout<<"Function to clear the screen";
+    for(int i=0;i<90;i++)
+    {
+    cout<<"\n";
+    }
+}
+
 //____Classes
+//____Class Rabit
 class Rabit
 {
     public:
-   /* Rabit(int ID);
-    ~Rabit();
+    /*Rabit(int ID);
+
     class ID
     {
         public:
-        ID(int HP,int moveRange,bool readyToChild)*/
+        ID(int HP,int moveRange,bool readyToChild);*/
         Rabit(int setHP,int setMoveRange,bool setReadyToChild);
+        ~Rabit() {}
         int HP;//Health Point
         int moveRange;
         bool readyToChild;
+        int positionX;
+        int positionY;
         int eat();
-        ~Rabit();
-    //}
+
+
+       // ~ID();
+   // }
 };
+
+//_____Constructor
 Rabit::Rabit(int setHP,int setMoveRange,bool setReadyToChild)
 {
-    Rabit::HP=setHP;
-    Rabit::moveRange=setMoveRange;
-    Rabit::readyToChild=setReadyToChild;
+    HP=setHP;
+    moveRange=setMoveRange;
+    readyToChild=setReadyToChild;
 }
+
+//____Eat func
 int Rabit::eat()
 {
     cout<<"No\n";
+    HP++;
 }
+
+//____Create new rabbits
+void generationRabit()
+{
+    Rabit Sanya(30,3,false);
+    cout << "Sanya HP=" << Sanya.HP <<"\n";
+    Sanya.eat();
+    cout << "Sanya HP=" << Sanya.HP <<" ^_^ \n";
+    Sanya.HP=150;
+    cout << "Sanya HP=" << Sanya.HP <<" O_o \n";
+    getch();
+    cls();
+   for(int i=1;i<10;i++)
+    {
+        Rabit id(30,3,false);
+        cout << id.HP;
+    }
+    //cout << "!!!!  " <<id.HP;
+}
+
+//_____WRONG CLASSSS!!!!!!!!!!!!!!!!!!!!SSS!!!!!!!!!!!!!!
 class Wolf
 {
     public:
@@ -42,29 +89,8 @@ class Wolf
     bool readyToChild;
     int hunt();
 };
-//____Function to clear all screen MUCH MORE SPAAAACCCEEEE
-void cls()
-{
-    cout<<"Function to clear the screen";
-    for(int i=0;i<25;i++)
-    {
-    cout<<"\n";
-    }
-}
-//____Destructor
-Rabit::~Rabit()
-{
-}
-//____Create new rabbits
-void generationRabit()
-{
-    Rabit Sanya(30,3,false);
-    Sanya.eat();
-    cout << "Sanya HP=" << Sanya.HP <<"\n";
 
-    Sanya.HP=150;
-    cout << "Sanya HP=" << Sanya.HP <<" O_o \n";
-}
+
 //____Start game
 void startGame()
 {
@@ -72,6 +98,7 @@ void startGame()
     generationRabit();
 
 }
+
 //____Function ASCII characters
 void lol()
 {
@@ -80,6 +107,7 @@ void lol()
         cout << (char)i;
     }
 }
+
 //____Function Main Menu
 void menu()
 {
@@ -111,6 +139,7 @@ void menu()
     }
     //return 1;
 }
+
 int main()
 {
     cout << "\nHello world!\nHi Master!!!\nMenu status is "<<menuStatus<<"\n";
