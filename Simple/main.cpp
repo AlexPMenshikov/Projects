@@ -9,8 +9,54 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <cstring>
 
 using namespace std;
+
+const int tRow=15, tCol=15;
+
+void randomDungeon(char caaMaze[tRow][tCol])
+{
+    int i=0,j=0;
+    //char rd[tRow][tCol]={" "};
+    for( i=0; i < tRow; i++)
+        {
+            for(j=0; j < tCol; j++)
+            {
+                if(( (i==0) || (i==(tRow-1) )) || ( (j==0) || (j==(tCol-1)) ))
+                {
+                    caaMaze[i][j]='*';
+                }
+                else
+                {
+                    if(( (i==1) || (i==(tRow-2) )) || ( (j==1) || (j==(tCol-2)) ))
+                    {
+                    caaMaze[i][j]=' ';
+                    }
+                    else
+                    {
+                        if ((rand() % 4)==1)
+                        {
+                            caaMaze[i][j]='*';
+                        }
+                        else
+                        {
+                            caaMaze[i][j]=' ';
+                        }
+                    }
+                }
+            }
+        }
+    for( i=0; i < tRow; i++)
+        {
+            for ( j=0; j < tCol; j++)
+            {
+                cout<<caaMaze[i][j];
+            }
+        cout<<"\n";
+        }
+    cout<<"\n";
+}
 
 class CCreature
 {
@@ -74,22 +120,24 @@ public:
 	CDungeon()
 	{
 		// Create the empty maze
-		char caaMaze[10][11] =
+		char caaMaze[tRow][tCol] =
 		{
-			"**********",
-			"* **  ** *",
-			"* *  **  *",
-			"*        *",
-			"* *  *** *",
-			"* ** * ***",
-			"* *  *   *",
-			"* **     *",
-			"*  * *** *",
-			"**********"
+			/*"*********",
+			"* **  ***",
+			"* *  ** *",
+			"*       *",
+			"* *  ****",
+			"* ** * **",
+			"* *  *  *",
+			"* **    *",
+			"*  * *  *",
+			"*********"*/
+			""
         };
-		for (unsigned int uiRow = 0; uiRow < 10; ++uiRow)
+        randomDungeon(caaMaze);
+		for (unsigned int uiRow = 0; uiRow < tRow; ++uiRow)
 		{
-			for (unsigned int uiCol = 0; uiCol < 10; ++uiCol)
+			for (unsigned int uiCol = 0; uiCol < tCol; ++uiCol)
 			{
 				mcaaMaze[uiRow][uiCol] = caaMaze[uiRow][uiCol];
 			}
@@ -100,8 +148,9 @@ public:
 	{
 		return mcaaMaze[uiRow][uiCol];
 	}
+
 private:
-	char mcaaMaze[10][10];
+	char mcaaMaze[tCol][tRow];
 };
 
 class CRolePlayingGame
@@ -115,9 +164,9 @@ public:
 		srand((unsigned int)qTime);
 
 		// Initialize the dungeon to be empty
-		for (unsigned int uiRow = 0; uiRow < 10; ++uiRow)
+		for (unsigned int uiRow = 0; uiRow < tRow; ++uiRow)
 		{
-			for (unsigned int uiCol = 0; uiCol < 10; ++uiCol)
+			for (unsigned int uiCol = 0; uiCol < tCol; ++uiCol)
 			{
 				mqpaaCreatures[uiRow][uiCol]	= 0;
 			}
@@ -127,8 +176,8 @@ public:
 		bool bFoundSpot = false;
 		while (!bFoundSpot)
 		{
-			unsigned int uiRow = 1 + (rand() % 8);
-			unsigned int uiCol = 1 + (rand() % 8);
+			unsigned int uiRow = 1 + (rand() % (tRow-2));
+			unsigned int uiCol = 1 + (rand() % (tCol-2));
 			if (QueryLocation(uiRow, uiCol) == ' ')
 			{
 				bFoundSpot = true;
@@ -140,8 +189,8 @@ public:
 		unsigned int uiMonster = 0;
 		while (!bFoundSpot)
 		{
-			unsigned int uiRow = 1 + (rand() % 8);
-			unsigned int uiCol = 1 + (rand() % 8);
+			unsigned int uiRow = 1 + (rand() % (tRow-2));
+			unsigned int uiCol = 1 + (rand() % tCol-2);
 			if (QueryLocation(uiRow, uiCol) == ' ')
 			{
 				mqpaaCreatures[uiRow][uiCol] = &mqaMonsters[uiMonster];
@@ -188,14 +237,14 @@ public:
 					--uiNextRow;
 					break;
 				}
-			case 's':
-			case 'S':
+			case 'd':
+			case 'D':
 				{
 					++uiNextCol;
 					break;
 				}
-			case 'z':
-			case 'Z':
+			case 's':
+			case 'S':
 				{
 					++uiNextRow;
 					break;
@@ -206,6 +255,11 @@ public:
 					--uiNextCol;
 					break;
 				}
+			case 'x':
+			case 'X':
+                {
+                    exit(0);
+                }
 			default:
 				{
 					return false;
@@ -232,9 +286,9 @@ public:
 	void PrintBoard()
 	{
 		using namespace std;
-		for (unsigned int uiRow = 0; uiRow < 10; ++uiRow)
+		for (unsigned int uiRow = 0; uiRow < tRow; ++uiRow)
 		{
-			for (unsigned int uiCol = 0; uiCol < 10; ++uiCol)
+			for (unsigned int uiCol = 0; uiCol < tCol; ++uiCol)
 			{
 				cout << QueryLocation(uiRow, uiCol);
 			}
@@ -277,9 +331,9 @@ public:
 
 private:
 	bool LocateCreature(unsigned int& uirRow, unsigned int& uirCol, CCreature* qpCreature) {
-		for (unsigned int uiRow = 0; uiRow < 10; ++uiRow)
+		for (unsigned int uiRow = 0; uiRow < tRow; ++uiRow)
 		{
-			for (unsigned int uiCol = 0; uiCol < 10; ++uiCol)
+			for (unsigned int uiCol = 0; uiCol < tRow; ++uiCol)
 			{
 				if (mqpaaCreatures[uiRow][uiCol] == qpCreature)
 				{
@@ -294,7 +348,7 @@ private:
 	CDungeon mqDungeon;
 	CCreature mqHero;
 	CCreature mqaMonsters[10];
-	CCreature* mqpaaCreatures[10][10];//Position of monsters
+	CCreature* mqpaaCreatures[tRow][tCol];//Position of monsters
 };
 
 
@@ -302,12 +356,17 @@ int main()
 {
 	// Cleared the dungeon
 	CRolePlayingGame qGame;
+	// Initlialize the random number generator
+	time_t qTime;
+	time(&qTime);
+	srand((unsigned int)qTime);
+	//randomDungeon();
 	bool bGameOver = false;
 	do {
 		qGame.PrintBoard();
 		// Get the next move
 		char cMove;
-		cout << "Enter w, a, s, or z to move:" << endl;
+		cout << "Enter w, a, d, s to move, or x to exit:\n";
 		cin >> cMove;
 		// Check the move was valid
 		if (qGame.MoveHero(cMove))
