@@ -18,7 +18,9 @@ const int tRow=15, tCol=15;
 void randomDungeon(char caaMaze[tRow][tCol])
 {
     int i=0,j=0;
-    //char rd[tRow][tCol]={" "};
+    time_t qTime;
+	time(&qTime);
+	srand((unsigned int)qTime);
     for( i=0; i < tRow; i++)
         {
             for(j=0; j < tCol; j++)
@@ -366,7 +368,6 @@ int main()
 	time_t qTime;
 	time(&qTime);
 	srand((unsigned int)qTime);
-	//randomDungeon();
 	bool bGameOver = false;
 	do {
 		qGame.PrintBoard();
