@@ -23,27 +23,26 @@ void cls()
 
 //____Classes
 //____Class Rabit
-class Rabit
-{
-    public:
-    /*Rabit(int ID);
-
-    class ID
+class ID
     {
         public:
-        ID(int HP,int moveRange,bool readyToChild);*/
-        Rabit(int setHP,int setMoveRange,bool setReadyToChild);
-        ~Rabit() {}
+        ID(int HP,int moveRange,bool readyToChild);
+        ~ID() {}
+        //Rabit(int setHP,int setMoveRange,bool setReadyToChild);
+        //~Rabit() {}
         int HP;//Health Point
         int moveRange;
         bool readyToChild;
         int positionX;
         int positionY;
-        int eat();
-
-
-       // ~ID();
-   // }
+        void eat();
+    }
+class Rabit
+{
+    public:
+    Rabit();
+    ~Rabit() {}
+    ID Rab;
 };
 
 //_____Constructor
@@ -55,16 +54,16 @@ Rabit::Rabit(int setHP,int setMoveRange,bool setReadyToChild)
 }
 
 //____Eat func
-int Rabit::eat()
+void Rabit::ID::eat()
 {
     cout<<"No\n";
-    HP++;
+    ID.HP++;
 }
 
 //____Create new rabbits
 void generationRabit()
 {
-    Rabit Sanya(30,3,false);
+    Rabit Sanya(10,1,false);
     cout << "Sanya HP=" << Sanya.HP <<"\n";
     Sanya.eat();
     cout << "Sanya HP=" << Sanya.HP <<" ^_^ \n";
@@ -107,10 +106,14 @@ void lol()
         cout << (char)i;
     }
 }
-
+int exit()
+{
+    return 0;
+}
 //____Function Main Menu
 void menu()
 {
+    //cls();
     cout << "Hi where am i???___________>1\n";
     cout << "START______________________>2\n";
     cout << "LOL________________________>3\n";
@@ -134,8 +137,8 @@ void menu()
     case 7: break;
     case 8: break;
     case 9: break;
-    case 0: break;
-    default: {menu(); }
+    case 0: exit(); break;
+    //default: {exit(); }
     }
     //return 1;
 }
@@ -144,7 +147,8 @@ int main()
 {
     cout << "\nHello world!\nHi Master!!!\nMenu status is "<<menuStatus<<"\n";
     menu();
-    //cout << menuStatus;
+    cout << "SSSS " <<menuStatus;
+
     return 0;
 }
 

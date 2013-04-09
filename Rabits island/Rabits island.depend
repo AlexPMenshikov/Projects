@@ -1,5 +1,6 @@
 # depslib dependency file v1.0
-1365089806 source:e:\projects\rabits island\main.cpp
+1365157635 source:e:\projects\rabits island\main.cpp
 	<iostream>
 	<conio.h>
+	<stdio.h>
 
