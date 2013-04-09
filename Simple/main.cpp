@@ -296,6 +296,11 @@ public:
 		}
 	}
 
+    void heroHP()
+    {
+        //cout <<
+    }
+
 	bool HeroIsDead()
 	{
 		return mqHero.IsDead();
@@ -309,7 +314,8 @@ public:
 			{
 				unsigned int uiRow;
 				unsigned int uiCol;
-				if (LocateCreature(uiRow, uiCol, &(mqaMonsters[uiIndex]))) {
+				if (LocateCreature(uiRow, uiCol, &(mqaMonsters[uiIndex])))
+				{
 					mqpaaCreatures[uiRow][uiCol] = 0;
 					cout << "Monster Killed!" << endl;
 				}
@@ -366,6 +372,7 @@ int main()
 		qGame.PrintBoard();
 		// Get the next move
 		char cMove;
+		//cout <<
 		cout << "Enter w, a, d, s to move, or x to exit:\n";
 		cin >> cMove;
 		// Check the move was valid
